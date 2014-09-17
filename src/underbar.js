@@ -200,15 +200,15 @@ var _ = {};
   //   }, 0); // should be 6
   _.reduce = function(collection, iterator, accumulator) {
     var result = 0;
-    if (typeof accumulator === "number") {
+    if (accumulator !== undefined) {
       result = accumulator;
     }
     else {
       result = collection[0];
     }
-    for (var i = 0; i < collection.length; i++) {
-      result += collection[i];
-    }
+    _.each(collection, function(value) {
+      result = iterator(result, value);
+    });
     return result;
   };
 
