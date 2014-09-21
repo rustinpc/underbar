@@ -251,6 +251,7 @@ var _ = {};
     return !(_.every(collection, function(value) {
       return !iterator(value);
     }));
+    // Modified _.every solution
     /* if (iterator === undefined) {
       iterator = _.identity;
     }
@@ -377,6 +378,14 @@ var _ = {};
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+    var arrayCopy = array.slice();
+    var arrayNew = [];
+    while (arrayCopy.length > 0) {
+      var random = Math.floor(Math.random() * arrayCopy.length);
+      arrayNew.push(arrayCopy[random]);
+      arrayCopy.splice(random,1);
+    }
+    return arrayNew;
   };
 
 
